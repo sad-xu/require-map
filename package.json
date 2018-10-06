@@ -1,0 +1,29 @@
+{
+  "name": "require-map",
+  "version": "0.1.0",
+  "description": "Show the require contact map for your nodejs project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sad-xu/require-map.git"
+  },
+  "keywords": [
+    "require",
+    "map",
+    "contact",
+    "link"
+  ],
+  "author": {
+    "name": "sad-xu",
+    "email": "1031568754@qq.com",
+    "url": "github.com/sad-xu"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sad-xu/require-map/issues"
+  },
+  "homepage": "https://github.com/sad-xu/require-map#readme"
+}

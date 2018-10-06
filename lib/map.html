@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<meta charset=utf-8>
+		<meta content="width=device-width,initial-scale=1"name=viewport>
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+	</head>
+	<body>
+		<canvas height="600" width="1300"></canvas>
+	</body>
+</html>
+	<script src="relation.js"></script>
+	<script>
+		let canvas = document.querySelector("canvas")
+
+		let nodeData = [ {name: 'express' },
+					{ name: './app.js' },
+					{ name: 'body-parser' },
+					{ name: './router/api.js' },
+					{ name: 'redis' } ];
+
+		let linkData = [ { source: 'express', target: './app.js' },
+					{ source: 'body-parser', target: './app.js' },
+					{ source: './router/api.js', target: './app.js' },
+					{ source: 'express', target: './router/api.js' },
+					{ source: 'redis', target: './router/api.js' } ]
+
+		const s = new Relation({
+			nodeData: nodeData,
+			linkData: linkData,
+			canvas: canvas,
+			width: 1300,
+			height: 600,
+			radius: 14,
+			lineWidth: 2,
+			lineLength: 90,
+			strength: -60
+		})
+		s.init()
+	</script>
