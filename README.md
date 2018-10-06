@@ -4,12 +4,12 @@
 
 ## Install
 ```
-$ npm install --save require-map
+$ npm install --save @pihachu/require-map
 ```
 
 ## Usage
 ```js
-const RequireMap = require('require-map')
+const RequireMap = require('@pihachu/require-map')
 
 const requireMap = new RequireMap('app.js') // your entry file
 requireMap.run()
@@ -18,9 +18,10 @@ requireMap.run()
 ```
 
 If successful, there will be a file called `requiremap.html` in your root directory.
+
 open in your browers:
 
-![requiremap.html](/img/example.png)
+![requiremap.html](https://raw.githubusercontent.com/sad-xu/require-map/master/img/example.png)
 
 
 ## License
