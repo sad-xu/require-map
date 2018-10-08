@@ -1,6 +1,6 @@
 {
   "name": "@pihachu/require-map",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Show the require contact map for your nodejs project.",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   "author": {
     "name": "sad-xu",
     "email": "1031568754@qq.com",
-    "url": "github.com/sad-xu"
+    "url": "https://github.com/sad-xu"
   },
   "license": "ISC",
   "bugs": {

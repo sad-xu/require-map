@@ -1,7 +1,10 @@
 const fs = require('fs')
+const path = require('path')
 
 // 获取require的包名
 function getRequires(str) {
+	// 去除注释
+	str = str.replace(/\/\*[\s\S]*\*\/|\/\/.*/g, '\n')
 	let arr = str.match(/require\('(\S*)'\)/mg)
 	return arr.map(item => {
 		let name = item.replace(/\\/g, '').replace(/'/g,'"').slice(9,-2)
@@ -32,29 +35,17 @@ function isNPM(str) {
 
 let mapArr = []
 
-function start(str) {
+function start(str, p) {
 	// sync
-	let requireArr = getRequires(fs.readFileSync(str, 'utf8'))
+	let truePath = path.join(p, str)
+	if (truePath.indexOf('.js') < 0) truePath += '.js'
+	let requireArr = getRequires(fs.readFileSync(truePath, 'utf8'))
 	requireArr.forEach((item, index) => {
 		mapArr.push({from: item, to: str})
 		if (!isNPM(item)) {
-			start(item)
+			start(item, path.dirname(truePath))
 		}
 	})
-
-	// async
-	// fs.readFile(str,'utf8', (err, data) => {
-	// 	if (err) throw err
-	// 	num--
-	// 	let requireArr = getRequires(data)
-	// 	requireArr.forEach((item, index) => {
-	// 		mapArr.push({from: item, to: str})
-	// 		if (!isNPM(item)) {
-	// 			start(item)
-	// 		}
-	// 	})
-	// 	console.log('map', mapArr)
-	// })
 }
 
 function getData(data) {
@@ -79,7 +70,7 @@ function getData(data) {
 
 /*
 	{
-		directory: '', // 目录名
+		directory: 'requiremap.html', // 目录名
 		filename: 'index.html',  // 文件名
 		width: 1300						// 画布宽
 		height: 600 					// 画布高
@@ -91,11 +82,11 @@ function getData(data) {
 */
 function RequireMap(entry = 'app.js', opt = {}) {  // 入口文件, map配置项
 	this.entry = entry
-	// this.opt = opt
+	this.opt = opt
 }
 
 RequireMap.prototype.run = function() {
-	start(this.entry)
+	start(this.entry, process.cwd())
 	let {nodeData, linkData} = getData(mapArr)
 	// 生成文件
 	
@@ -137,7 +128,7 @@ RequireMap.prototype.run = function() {
 
 	fs.writeFile('requiremap.html', htmlData, err => {
 		if (err) throw err
-		console.log('map finish!')
+		console.log('success! (๑•̀ㅂ•́)و✧')
 	})
 }
 
