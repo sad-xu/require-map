@@ -111,7 +111,7 @@ RequireMap.prototype.run = function() {
 			<script src="https://d3js.org/d3.v5.min.js"></script>
 		</head>
 		<body>
-			<canvas height="600" width="1300"></canvas>
+			<canvas height="700" width="1300"></canvas>
 		</body>
 	</html>
 	<script>
@@ -129,11 +129,11 @@ RequireMap.prototype.run = function() {
 			linkData: linkData,
 			canvas: canvas,
 			width: 1300,
-			height: 600,
+			height: 700,
 			radius: 14,
 			lineWidth: 2,
-			lineLength: 90,
-			strength: -60
+			lineLength: 120,
+			strength: -90
 		})
 		s.init()
 	</script>`
