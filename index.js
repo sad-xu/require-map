@@ -6,6 +6,7 @@ function getRequires(str) {
 	// 去除注释
 	str = str.replace(/\/\*[\s\S]*\*\/|\/\/.*/g, '\n')
 	let arr = str.match(/require\('(\S*)'\)/mg)
+	if (arr === null) return []
 	return arr.map(item => {
 		let name = item.replace(/\\/g, '').replace(/'/g,'"').slice(9,-2)
 		if (isNPM(name)) return extract(name)
@@ -38,8 +39,19 @@ let mapArr = []
 function start(str, p) {
 	// sync
 	let truePath = path.join(p, str)
-	if (truePath.indexOf('.js') < 0) truePath += '.js'
-	let requireArr = getRequires(fs.readFileSync(truePath, 'utf8'))
+	let data = ''
+
+	if (truePath.indexOf('.js') < 0) {
+		try {
+			data = fs.readFileSync(truePath+= '/index.js', 'utf8')
+		} catch(err) {
+			data = fs.readFileSync(truePath+='.js', 'utf8')
+		}
+	} else {
+		data = fs.readFileSync(truePath, 'utf8')
+	}
+	
+	let requireArr = getRequires(data)
 	requireArr.forEach((item, index) => {
 		mapArr.push({from: item, to: str})
 		if (!isNPM(item)) {
