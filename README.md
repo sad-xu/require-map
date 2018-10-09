@@ -1,5 +1,7 @@
 # Require-Map
 
+[![Build Status](https://travis-ci.org/sad-xu/require-map.svg?branch=master)](https://travis-ci.org/sad-xu/require-map) 
+
 > Show the require contact map for your nodejs project.
 
 ## Install
@@ -12,15 +14,7 @@ $ npm install --save @pihachu/require-map
 const RequireMap = require('@pihachu/require-map')
 
 // (entry file, options)
-const requireMap = new RequireMap('app.js', { 
-	filename: 'requiremap.html',
-	width: 1300,
-	height: 600,
-	radius: 14,
-	lineWidth: 2,
-	lineLength: 90,
-	strength: -60
-})
+const requireMap = new RequireMap('app.js')
 requireMap.run()
 
 // will add some options in next version...
