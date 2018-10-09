@@ -4,7 +4,7 @@
   "description": "Show the require contact map for your nodejs project.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/sad-xu/require-map/issues"
   },
-  "homepage": "https://github.com/sad-xu/require-map#readme"
+  "homepage": "https://github.com/sad-xu/require-map#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
 }
