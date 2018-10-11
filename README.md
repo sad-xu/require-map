@@ -33,9 +33,9 @@ open in your browers:
 
 - [x] Fix path error bug
 - [x] Comments are ignored
-- [] Add more options
-- [] Can parse `import` 
-- [] Optimize web
+- [ ] Add more options
+- [ ] Can parse `import` 
+- [ ] Optimize web
 
 
 ## License
