@@ -43,9 +43,11 @@ function start(str, p) {
 
 	if (truePath.indexOf('.js') < 0) {
 		try {
-			data = fs.readFileSync(truePath+= '/index.js', 'utf8')
+			data = fs.readFileSync(truePath + '/index.js', 'utf8')
+			truePath += '/index.js'
 		} catch(err) {
-			data = fs.readFileSync(truePath+='.js', 'utf8')
+			data = fs.readFileSync(truePath + '.js', 'utf8')
+			truePath += '.js'
 		}
 	} else {
 		data = fs.readFileSync(truePath, 'utf8')
@@ -82,19 +84,25 @@ function getData(data) {
 
 /*
 	{
-		directory: 'requiremap.html', // 目录名
 		filename: 'index.html',  // 文件名
 		width: 1300						// 画布宽
 		height: 600 					// 画布高
 		radius: 14					// 节点半径
 		lineWidth: 2		// 连接线宽度
-		lineLength: 90	// 连接线长度
+		lineLength: 120	// 连接线长度
 		strength: -60  		// 节点间作用力
 	}
 */
 function RequireMap(entry = 'app.js', opt = {}) {  // 入口文件, map配置项
 	this.entry = entry
-	this.opt = opt
+	let { 
+		filename = 'requiremap.html',
+		radius = 14,
+		lineLength = 120
+	} = opt
+	this.filename = filename
+	this.radius = radius
+	this.lineLength = lineLength
 }
 
 RequireMap.prototype.run = function() {
@@ -130,15 +138,15 @@ RequireMap.prototype.run = function() {
 			canvas: canvas,
 			width: 1300,
 			height: 700,
-			radius: 14,
+			radius: ${this.radius},
 			lineWidth: 2,
-			lineLength: 120,
+			lineLength: ${this.lineLength},
 			strength: -90
 		})
 		s.init()
 	</script>`
 
-	fs.writeFile('requiremap.html', htmlData, err => {
+	fs.writeFile(this.filename, htmlData, err => {
 		if (err) throw err
 		console.log('success! (๑•̀ㅂ•́)و✧')
 	})
