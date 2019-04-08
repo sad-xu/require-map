@@ -16,8 +16,8 @@ const RequireMap = require('@pihachu/require-map')
 // (entry file, options)
 const requireMap = new RequireMap('app.js', {
     filename: 'filename.html',  // default 'requiremap.html'
-    radius: 14,                 // Node radius, default 14
-    lineLength: 120            // Node connection length, default 120
+    radius: 14, // Node radius, default 14
+    lineLength: 120 // Node connection length, default 120
 })
 requireMap.run()
 
@@ -40,4 +40,4 @@ open in your browers:
 
 ## License
 
-MIT © [Michael Wuergler](http://numetriclabs.com)
+MIT &copy; [Xu Haocong](https://github.com/sad-xu)
